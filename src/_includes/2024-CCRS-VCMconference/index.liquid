@@ -171,7 +171,13 @@
             <div class="tc-article__image" {% if article.data.coverImage %}style="background-image: url('{{ urlBase }}{{ article.data.coverImage }}');"{% endif %}></div>
             <time class="tc-article__time" datetime="{{ article.data.date | date: '%Y-%m-%d' }}">{{ article.data.date | date: '%Y / %m / %d' }}</time>
             <h3 class="tc-article__title h4">
-              <a href="{{ article.data.url }}" target="_blank" class="stretched-link text-white">{{ article.data.title }}</a>
+              <a href="{{ article.data.url }}" target="_blank" class="stretched-link text-white">
+                {% if article.data[lang].title %}
+                  {{ article.data[lang].title }}
+                {% else %}
+                  {{ article.data.title }}
+                {% endif %}
+              </a>
             </h3>
           </div>
           {% endfor %}
